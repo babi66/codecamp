@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comboni Summer Camp - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #c0bff1, #a0a6fc);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      animation: fadeIn 0.7s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-title {
+      font-size: 2.5rem;
+      font-family: Arial;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      color: #2f42eb;
+    }
+
+    .branding {
+      font-size: 1.5em;
+      color: #066196;
+      margin-bottom: 1.5rem;
+      font-weight: 1000;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #2193b0;
+    }
+
+    button {
+      width: 100%;
+      background-color: #2193b0;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1b7e9f;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="login-container">
+    <div class="login-title">🔐 Student Login</div>
+    <div class="branding">Comboni Summer Camp <br><br>
+    <form id="loginForm">
+      <input type="text" id="fullName" placeholder="Full Name" required>
+      <input type="text" id="slipNumber" placeholder="Slip Number" required>
+      <button type="submit">Login</button>
+      <p id="errorMsg" class="error"></p>
+    </form>
+  </div>
+
+  <script>
+    const students = {
+      "Abel Yekunoamlak": "sc-011",
+      "Abem Bekele": "sc-012",
+      "Abem Dershaye": "sc-013",
+      "Abigiya Tefani": "sc-014",
+      "Amar Abdulshkur": "sc-015",
+      "Amen Birhanu": "sc-016",
+      "Amen Buriso": "sc-017",
+      "Amen Zenebe": "sc-018",
+      "Azeb Abdi": "sc-019",
+      "Bahran Tesfaye": "sc-020",
+      "Bamlak Tesfaye": "sc-021",
+      "Beamlak Wegayehu": "sc-022",
+      "Befikir Getu": "sc-023",
+      "Bemnet Takito ": "sc-024",
+      "Bethel Shemsu": "sc-025",
+      "Bethelhem Getu": "sc-026",
+      "Betselot Teshome": "sc-027",
+      "Biruktawit Talu": "sc-028",
+      "Bisrat Abrha": "sc-029",
+      "Blen Gezahegn": "sc-030",
+      "Blen Wondimu": "sc-031",
+      "Christina Birhanu": "sc-032",
+      "Condelina Zelalem": "sc-033",
+      "Dagim Tilahun": "sc-034",
+      "Dagimawit Tsegaye": "sc-035",
+      "Dibora Tekalign": "sc-036",
+      "Ebenezer Tsegaw": "sc-037",
+      "Ebsa Abayneh": "sc-038",
+      "Eleni Kiflee": "sc-039",
+      "Elshaday Elias": "sc-040",
+      "Elul Biniyam": "sc-041",
+      "Emnet Tekleab ": "sc-042",
+      "Ephrem Zekariyas": "sc-043",
+      "Esha Atinkut ": "sc-044",
+      "Eyoab Tesema": "sc-045",
+      "Eyohas Keder": "sc-046",
+      "Ezana Mulatu": "sc-047",
+      "Hamerty Daniel": "sc-048",
+      "Haset Habtamu": "sc-049",
+      "Henok Mengistu": "sc-050",
+      "Hosseana Teshome": "sc-051",
+      "Izat Wogderess": "sc-052",
+      "Kalkidan Abera ": "sc-053",
+      "Kalkidan Gobeze": "sc-054",
+      "Leul Amanuel ": "sc-055",
+      "Lielt Timotiwos": "sc-056",
+      "Liya Kelil": "sc-057",
+      "Mahlet Alem": "sc-058",
+      "Mahlet Workagegnehu": "sc-059",
+      "Makida Birukab": "sc-060",
+      "Mariyamawit Girama": "sc-061",
+      "Mekdelawit Admasu": "sc-062",
+      "Melawit Meseret ": "sc-063",
+      "Mereat Belete": "sc-064",
+      "Metasebiya Habtamu": "sc-065",
+      "Mihret Getu": "sc-066",
+      "Mikiyas Yosef ": "sc-067",
+      "Millennium Kumlachew": "sc-068",
+      "Misgana Dubale": "sc-069",
+      "Misikir Fetene": "sc-070",
+      "Motolomi Assefa": "sc-071",
+      "Naol Abayneh": "sc-072",
+      "Natan Tadesse": "sc-073",
+      "Natnahel Adnew": "sc-074",
+      "Natneal Birhanu": "sc-075",
+      "Nazrawi Abrham": "sc-076",
+      "Nikodimos Teshale ": "sc-077",
+      "Niyana Elias": "sc-078",
+      "Nuhamin Genene": "sc-079",
+      "Nuhamin Nigatu": "sc-080",
+      "Orchid solomon ": "sc-081",
+      "Rodas Melekot": "sc-082",
+      "Ruhama Abebe": "sc-083",
+      "Samrawit Dejene": "sc-084",
+      "Saron Ademe": "sc-085",
+      "Saron Amare": "sc-086",
+      "Saron Thedros": "sc-087",
+      "Selam Digafe": "sc-088",
+      "Seleman Abdurhaman": "sc-089",
+      "Selemawit Dawit": "sc-090",
+      "Sewit Nafro": "sc-091",
+      "Simon Teketel": "sc-092",
+      "Sipara Ameha": "sc-093",
+      "Solyana Fisseha": "sc-094",
+      "Solyana Tesfaye": "sc-095",
+      "Tiyabesta Kibre": "sc-096",
+      "Tolera Yadessa": "sc-097",
+      "Tsion Asnakew": "sc-098",
+      "Wubrist Mitiku": "sc-099",
+      "Yamlak Fekadu": "sc-100",
+      "Yoftahe Abinet": "sc-101",
+      "Yordanos Anteneh": "sc-102",
+      "Yoseph Mulugeta": "sc-103",
+      "Zablon Yohannes": "sc-104",
+      "Zetseat Ashenafi": "sc-105",
+      // Add more from your Excel list
+    };
+
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const fullName = document.getElementById('fullName').value.trim();
+      const slipNumber = document.getElementById('slipNumber').value.trim();
+      const errorMsg = document.getElementById('errorMsg');
+
+      if (students[fullName] && students[fullName] === slipNumber) {
+        localStorage.setItem("loggedInUser", fullName);
+        window.location.href = "portal.html";
+
+      } else {
+        errorMsg.textContent = "Invalid credentials. Please try again.";
+        errorMsg.style.color = "red"
+        errorMsg.style.fontSize = "0.7em"
+      }
+    });
+  </script>
+</body>
+</html>
